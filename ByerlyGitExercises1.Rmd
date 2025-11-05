@@ -1,0 +1,38 @@
+---
+title: "Untitled"
+author: "Byerly"
+date: "2025-11-05"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+source("setup.script.R")
+```
+# 1.
+```{r}
+data("knz_bison")
+
+bison <- knz_bison %>% 
+  mutate(animal_age = rec_year - animal_yob)
+
+```
+# 2.
+```{r}
+weight.threshold = 1000
+bison.weight <- filter(bison, animal_weight > weight.threshold)
+```
+
+#3
+```{r}
+boxplot(animal_weight~ animal_sex, data = bison)
+t.test(animal_weight~animal_sex, data = bison)
+#Weight is significantly different between sexes
+
+```
+
